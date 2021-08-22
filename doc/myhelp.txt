@@ -1,0 +1,21 @@
+*plughelp*
+插件帮助文档 插件一大堆 ,写个帮助文件记录一下
+
+*pluglist*
+|vim-bookmarks| 书签管理
+	
+
+
+
+
+
+
+*vim-bookmarks*
+	功能:书签管理
+	快捷键:
+		mm 	添加/删除书签 	:BookmarkToggle
+		ma 	显示所有书签 	:BookmarkShowAll
+		mc 	清除本 Buffer的书签 		:BookmarkClear
+		mx 	清除所有书签 	:BookmarkClearAll
+		
+		m
