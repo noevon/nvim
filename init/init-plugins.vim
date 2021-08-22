@@ -17,6 +17,7 @@ Plug 'skywind3000/asynctasks.vim' "编译运行任务,参考https://github.com/s
 Plug 'skywind3000/asyncrun.vim'
 Plug 'MattesGroeger/vim-bookmarks' 
 call plug#end()
+helptags ~/.config/nvim/doc/
 "======================
 " fzf
 "======================
