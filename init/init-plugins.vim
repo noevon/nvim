@@ -17,6 +17,20 @@ Plug 'skywind3000/asynctasks.vim' "编译运行任务,参考https://github.com/s
 Plug 'skywind3000/asyncrun.vim'
 Plug 'MattesGroeger/vim-bookmarks' 
 call plug#end()
+" coc.nvim
+let g:coc_global_extensions = [
+	\ 'coc-pairs',  
+	\ 'coc-translator',
+	\ 'coc-pyright',
+	\ 'coc-python',
+	\ 'coc-vimlsp',
+	\ 'coc-highlight', 
+	\ 'coc-cmake', 
+	\ 'coc-clangd',
+	\ 'coc-marketplace',
+	\ 'coc-sh',
+	\ 'coc-explorer',
+	\ 'coc-go']
 helptags ~/.config/nvim/doc/
 "======================
 " fzf
@@ -46,23 +60,6 @@ let g:vista#renderer#icons = {
 \   "variable": "\uf71b",
 \  }
 
-"=======================
-" coc.nvim
-"=======================
-let g:coc_global_extensions = [
-	\ 'coc-pairs', 
-	\ 'coc-translator',
-	\ 'coc-pyright',
-	\ 'coc-python',
-	\ 'coc-json',
-	\ 'coc-vimlsp',
-	\ 'coc-highlight', 
-	\ 'coc-cmake', 
-	\ 'coc-clangd',
-	\ 'coc-marketplace',
-	\ 'coc-sh',
-	\ 'coc-explorer',
-	\ 'coc-go']
 " 设置缓冲区
 set hidden
 " time
