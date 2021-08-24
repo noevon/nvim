@@ -1,5 +1,5 @@
 {
-	"pairs.enableCharacters": [ "[, \" , ', (" ],
+	"pairs.enableCharacters": [" {", "[, \" , ', (" ],
 	"coc.preferences.extensionUpdateCheck":"daily",
 	"suggest.noselect":true,
 	"suggest.enablePreselect":true,
