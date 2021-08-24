@@ -117,10 +117,23 @@ omap ac <Plug>(coc-classobj-a)
 "asynctasks
 noremap <silent><f5> :AsyncTask file-run<cr>
 noremap <silent><f9> :AsyncTask file-build<cr>
-
+noremap <silent><f6> :AsyncTask project-run<cr>
+noremap <silent><f7> :AsyncTask project-build<cr>
 "asyncrun
 let g:asyncrun_open = 6
 
 
 "coc-explorer
 nmap <space>e :CocCommand explorer<cr>
+
+
+" vim-bookmarks
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
+let g:bookmark_display_annotation = 1
+" 书签存储到根目录的.bookmarks
+function! g:BMWorkDirFileLocation()
+	let filename = 'bookmarks'
+	let rootdir = asyncrun#get_root('%')
+	return rootdir."/.".filename
+endfunction

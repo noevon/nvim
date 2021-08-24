@@ -17,5 +17,9 @@
 		ma 	显示所有书签 	:BookmarkShowAll
 		mc 	清除本 Buffer的书签 		:BookmarkClear
 		mx 	清除所有书签 	:BookmarkClearAll
-		
-		m
+		mi 	添加移除本行的注释 	:BookmarkAnnotate <TEXT>
+	
+	配置字段:
+		字段 										默认值 	功能
+		let g:bookmark_save_per_working_dir = 1 	0 		根据工作目录保存书签
+		let g:bookmark_display_annotation = 1 		0 		在状态行上显示注释文本
