@@ -19,6 +19,7 @@ Plug 'MattesGroeger/vim-bookmarks'
 call plug#end()
 " coc.nvim
 let g:coc_global_extensions = [
+	\ 'coc-json',
 	\ 'coc-pairs',  
 	\ 'coc-translator',
 	\ 'coc-pyright',
@@ -98,7 +99,10 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
-
+" translator
+nmap <Leader>ts <Plug>(coc-translator-e)
+nmap <Leader>tp <Plug>(coc-translator-p)
+vmap <Leader>ts <Plug>(coc-translator-ev)
 
 " textobj
 " Text Objects

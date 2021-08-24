@@ -1,5 +1,4 @@
 let mapleader="\<space>"
-nmap ts <Plug>(coc-translator-p)
 "nnoremap <c-p> :Leaderf file<CR>
 noremap <silent> <C-h> :History<CR>
 "noremap <C-t> :BTags<CR>
