@@ -1,4 +1,9 @@
 {
+	"translator.engines": [
+		"youdao"
+	],
+	"translator.window.maxWidth": 80,
+	"translator.window.maxHeight": 20,
 	"pairs.enableCharacters": [ "{", "[", "\"", "'", "(" ],
 	"coc.preferences.extensionUpdateCheck":"daily",
 	"suggest.noselect":true,

@@ -100,9 +100,9 @@ function! s:cocActionsOpenFromSelected(type) abort
   execute 'CocCommand actions.open ' . a:type
 endfunction
 " translator
-nmap <Leader>ts <Plug>(coc-translator-e)
-nmap <Leader>tp <Plug>(coc-translator-p)
-vmap <Leader>ts <Plug>(coc-translator-ev)
+nmap <Leader>t <Plug>(coc-translator-p)
+"nmap <Leader>tp <Plug>(coc-translator-p)
+vmap <Leader>t <Plug>(coc-translator-ev)
 
 " textobj
 " Text Objects
@@ -120,6 +120,13 @@ noremap <silent><f5> :AsyncTask file-run<cr>
 noremap <silent><f9> :AsyncTask file-build<cr>
 noremap <silent><f6> :AsyncTask project-run<cr>
 noremap <silent><f7> :AsyncTask project-build<cr>
+"下方
+let g:asynctasks_term_pos = 'bottom'
+" 复用
+let g:asynctasks_term_reuse = 1
+" 焦点不变
+let g:asynctasks_term_focus = 0
+
 "asyncrun
 let g:asyncrun_open = 6
 

@@ -1,4 +1,9 @@
 let mapleader="\<space>"
+fun! Copytoregy()
+	let @y = @/[4:-3] "获取搜索寄存器里面的字符串
+	"echo @y
+endf
+noremap gd gd:call Copytoregy()<CR>
 "nnoremap <c-p> :Leaderf file<CR>
 noremap <silent> <C-h> :History<CR>
 "noremap <C-t> :BTags<CR>
