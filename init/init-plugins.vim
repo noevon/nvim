@@ -49,6 +49,8 @@ set background=dark
 colorscheme sonokai
 " colorscheme spacecamp
 
+" indentLine
+autocmd FileType json,markdown let g:indentLine_conceallevel = 0
 "=======================
 " vista.vim
 "=======================
