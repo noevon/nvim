@@ -3,12 +3,13 @@ fun! Copytoregy()
 	let @y = @/[4:-3] "获取搜索寄存器里面的字符串
 	"echo @y
 endf
-noremap gd gd:call Copytoregy()<CR>
 "nnoremap <c-p> :Leaderf file<CR>
+"文件历史记录
 noremap <silent> <C-h> :History<CR>
 "noremap <C-t> :BTags<CR>
 noremap <silent> <C-l> :Lines<CR>
 "noremap <silent> <C-w> :Buffers<CR>
+"命令历史记录
 noremap <leader>; :History:<CR>
 function! s:list_buffers()
   redir => list
