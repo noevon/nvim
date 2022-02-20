@@ -72,9 +72,9 @@ endif
 "----------------------------------------
 if index(g:plugged_group, 'enhanced') >= 0
 	" fzf
-	Plug 'junegunn/fzf', { 'dir': '~/opt/fzf' }
+	Plug 'junegunn/fzf'
 	Plug 'junegunn/fzf.vim' "模糊查找
-	set rtp+=~/.fzf/bin/fzf
+	" set rtp+=~/.fzf/bin/fzf
 	let g:fzf_preview_window = 'right:60%'
 	let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
 	let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
@@ -90,12 +90,12 @@ if index(g:plugged_group, 'enhanced') >= 0
 	noremap <silent><f9> :AsyncTask file-build<cr>
 	noremap <silent><f6> :AsyncTask project-run<cr>
 	noremap <silent><f8> :AsyncTask project-build<cr>
-	"下方
-	let g:asynctasks_term_pos = 'bottom'
+	"新开一个
+	let g:asynctasks_term_pos = 'thelp'
 	" 复用
-	let g:asynctasks_term_reuse = 1
+	"let g:asynctasks_term_reuse = 1
 	" 焦点不变
-	let g:asynctasks_term_focus = 0
+	" let g:asynctasks_term_focus = 0
 	
 	"asyncrun
 	let g:asyncrun_open = 6
@@ -116,6 +116,8 @@ if index(g:plugged_group, 'enhanced') >= 0
 	Plug 'skywind3000/vim-terminal-help', " 终端 alt+=
 	" 快速跳转<leader><leader>f{char} 即可触发
 	Plug 'easymotion/vim-easymotion'
+	" 代码折叠
+	Plug 'tmhedberg/SimpylFold'
 endif
 
 
@@ -124,6 +126,7 @@ endif
 " beautify 增强插件
 "----------------------------------------
 if index(g:plugged_group, 'enhanced') >= 0
+	Plug 'mhinz/vim-startify' "启动画面
 	Plug 'Yggdroot/indentLine' " 缩进线显示
 	Plug 't9md/vim-choosewin' " 使用 ALT+e 会在不同窗口/标签上显示 A/B/C 等编号，然后字母直接跳转
 	Plug 'rafi/awesome-vim-colorschemes' " 主题
@@ -228,7 +231,7 @@ omap ac <Plug>(coc-classobj-a)
 
 
 "coc-explorer
-nmap <space>e :CocCommand explorer<cr>
+nmap <space>e :CocCommand explorer --quit-on-open<cr>
 
 
 

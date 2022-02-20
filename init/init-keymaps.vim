@@ -5,10 +5,10 @@ fun! Copytoregy()
 endf
 "nnoremap <c-p> :Leaderf file<CR>
 "文件历史记录
-noremap <silent> <C-h> :History<CR>
+noremap <leader>h :History<CR>
 "noremap <C-t> :BTags<CR>
-noremap <silent> <C-l> :Lines<CR>
-"noremap <silent> <C-w> :Buffers<CR>
+noremap <leader>l :Lines<CR>
+noremap <leader>b :Buffers<CR>
 "命令历史记录
 noremap <leader>; :History:<CR>
 function! s:list_buffers()
@@ -62,7 +62,7 @@ nnoremap <leader>rn <Plug>(coc-rename)
 noremap <m-m> :Vista!!<CR>
 noremap <c-t> :silent! Vista finder coc<CR>
 "预览声明.
-nnoremap <silent> <LEADER>h :call <SID>show_documentation()<CR> 
+nnoremap <silent> <LEADER>H :call <SID>show_documentation()<CR> 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
