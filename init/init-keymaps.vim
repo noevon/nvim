@@ -3,14 +3,6 @@ fun! Copytoregy()
 	let @y = @/[4:-3] "获取搜索寄存器里面的字符串
 	"echo @y
 endf
-"nnoremap <c-p> :Leaderf file<CR>
-"文件历史记录
-noremap <leader>h :History<CR>
-"noremap <C-t> :BTags<CR>
-noremap <leader>l :Lines<CR>
-noremap <leader>b :Buffers<CR>
-"命令历史记录
-noremap <leader>; :History:<CR>
 function! s:list_buffers()
   redir => list
   silent ls
@@ -28,41 +20,6 @@ command! BD call fzf#run(fzf#wrap({
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
 \ }))
 
-noremap <c-d> :BD<CR>
-
-
-
-"=======================
-" coc.nvim
-"=======================
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> <LEADER>+ <Plug>(coc-diagnostic-prev)
-nmap <silent> <LEADER>- <Plug>(coc-diagnostic-next)
-
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>aw  <Plug>(coc-codeaction-selected)w
-
-" ----------------------
-" vax 快捷键移植
-" ----------------------
-" 打开文件列表 alt+shift+o
-nnoremap <silent> <A-O> :Files<CR>
-" 跳转定义 alt+g
-nmap <silent> <m-g> <Plug>(coc-definition)
-" 查找引用 shift+alt+f
-nmap <silent> <m-F> <Plug>(coc-references)
-" 查找字符串 ctrl+shift+f
-nnoremap <silent> <C-F> :Rg<CR>
-" 切换头文件 alt+o
-nnoremap <silent> <m-o> :CocCommand clangd.switchSourceHeader<CR>
-" 替换名字
-nnoremap <leader>rn <Plug>(coc-rename)
-" 查看符号表 alt+m
-noremap <m-m> :Vista!!<CR>
-noremap <c-t> :silent! Vista finder coc<CR>
-"预览声明.
-nnoremap <silent> <LEADER>H :call <SID>show_documentation()<CR> 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -73,21 +30,65 @@ function! s:show_documentation()
   endif
 endfunction
 
+" ----------------------
+" 跳转快捷键
+" ----------------------
+" 查看buff
+nnoremap <leader>b :Buffers<CR> 
+" 查找文件
+nnoremap <silent>f :Rg<CR>
+" 跳转定义 leader+g
+nnoremap <leader>g <Plug>(coc-definition)
+"文件历史记录
+nnoremap <leader>h :History<CR>
+" 跳转行
+nnoremap <leader>l :Lines<CR>
+" 打开文件列表 
+nnoremap <leader>o :Files<CR>
+" 查找引用 
+nnoremap <leader>r <Plug>(coc-references)
+" 切换头文件 alt+o
+noremap <silent> <m-o> :CocCommand clangd.switchSourceHeader<CR>
+" 替换名字
+nnoremap <leader>rn <Plug>(coc-rename)
+" 查看符号表 alt+m
+noremap <m-m> :Vista!!<CR>
+"noremap <C-t> :BTags<CR>
+"nnoremap <c-p> :Leaderf file<CR>
+noremap <c-t> :silent! Vista finder coc<CR>
+"预览声明.
+nnoremap <silent> <LEADER>H :call <SID>show_documentation()<CR> 
+" 跳转buff
+nnoremap <m-e> <Plug>(choosewin)
 
+"--------------------------------------------------------
+"插件快捷键
 
-"------------------------
-"window
-"------------------------
-nmap <m-e> <Plug>(choosewin)
+" simpylfold
+" zc 代码折叠
+" zo 代码展开
 
-"------------------------
-"insert
-"------------------------
-" 删除前一个字符 c-u 
-" 删除前一个单词 c-w
-" 删除到行首    c-u
-"move to next word
-inoremap <C-F> <Esc>wwwi
-"move to prev word
-inoremap <C-B> <Esc>bi
+" vim-bookmarks
+" mm 当前行加入书签
+" mi 编辑书签注释
+" mg 移动书签
+" ma 查看所有书签
+
+" skywind3000/vim-terminal-help
+" <m-=> 开启终端
+
+" easymotion/vim-easymotion
+" 快速跳转<leader><leader>f{char} 即可触发
+
+" asynctasks
+" 编译运行任务,参考https://github.com/skywind3000/asynctasks.vim/
+noremap <silent><f5> :AsyncTask file-run<cr>
+noremap <silent><f9> :AsyncTask file-build<cr>
+noremap <silent><f6> :AsyncTask project-run<cr>
+noremap <silent><f8> :AsyncTask project-build<cr>
+
+" translator
+nmap <Leader>t <Plug>(coc-translator-p)
+"nmap <Leader>tp <Plug>(coc-translator-p)
+vmap <Leader>t <Plug>(coc-translator-ev)
 

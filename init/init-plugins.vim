@@ -82,14 +82,8 @@ if index(g:plugged_group, 'enhanced') >= 0
 	"模糊查找
 	Plug 'Yggdroot/LeaderF' 
 
-	"编译运行任务,参考https://github.com/skywind3000/asynctasks.vim/
 	Plug 'skywind3000/asynctasks.vim' 
 	Plug 'skywind3000/asyncrun.vim'
-	"asynctasks
-	noremap <silent><f5> :AsyncTask file-run<cr>
-	noremap <silent><f9> :AsyncTask file-build<cr>
-	noremap <silent><f6> :AsyncTask project-run<cr>
-	noremap <silent><f8> :AsyncTask project-build<cr>
 	"新开一个
 	let g:asynctasks_term_pos = 'thelp'
 	" 复用
@@ -103,15 +97,29 @@ if index(g:plugged_group, 'enhanced') >= 0
 
 	" vim-bookmarks 书签
 	Plug 'MattesGroeger/vim-bookmarks' 
+	highlight BookmarkSign ctermbg=NONE ctermfg=160
+    highlight BookmarkLine ctermbg=194 ctermfg=NONE
+    let g:bookmark_sign = '♥'
 	let g:bookmark_save_per_working_dir = 1
 	let g:bookmark_auto_save = 1
 	let g:bookmark_display_annotation = 1
 	" 书签存储到根目录的.bookmarks
-	function! g:BMWorkDirFileLocation()
-		let filename = 'bookmarks'
-		let rootdir = asyncrun#get_root('%')
-		return rootdir."/.".filename
-	endfunction
+    function! g:BMWorkDirFileLocation()
+        let filename = 'bookmarks'
+        let location = ''
+        if isdirectory('.git')
+            " Current work dir is git's work tree
+            let location = getcwd().'/.git'
+        else
+            " Look upwards (at parents) for a directory named '.git'
+            let location = finddir('.git', '.;')
+        endif
+        if len(location) > 0
+            return location.'/'.filename
+        else
+            return getcwd().'/.'.filename
+        endif
+    endfunction
 	Plug 'liuchengxu/vista.vim'  " taglist插件
 	Plug 'skywind3000/vim-terminal-help', " 终端 alt+=
 	" 快速跳转<leader><leader>f{char} 即可触发
@@ -189,6 +197,20 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
+
+function! s:check_back_space() abort
+	  let col = col('.') - 1
+	    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" 高亮选中
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+
+" neovim
 " 打开补全
 inoremap <silent><expr> <c-o> coc#refresh()
 " table选择补全
@@ -197,43 +219,7 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-	  let col = col('.') - 1
-	    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
 " 回车选择补全不换行 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
- 
-
-" 高亮选中
-autocmd CursorHold * silent call CocActionAsync('highlight')
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-" translator
-nmap <Leader>t <Plug>(coc-translator-p)
-"nmap <Leader>tp <Plug>(coc-translator-p)
-vmap <Leader>t <Plug>(coc-translator-ev)
-
-" textobj
-" Text Objects
-xmap kf <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap kf <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-xmap kc <Plug>(coc-classobj-i)
-omap kc <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-
-
-"coc-explorer
-nmap <space>e :CocCommand explorer --quit-on-open<cr>
-
-
-
+"--------------------------------------------------------
