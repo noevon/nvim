@@ -36,7 +36,7 @@ endfunction
 " 查看buff
 nnoremap <leader>b :Buffers<CR> 
 " 查找文件
-nnoremap <silent>f :Rg<CR>
+nnoremap <leader>f :Rg<CR>
 " 跳转定义 leader+g
 nnoremap <leader>g <Plug>(coc-definition)
 "文件历史记录
