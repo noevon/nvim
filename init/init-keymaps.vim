@@ -44,7 +44,13 @@ nnoremap <leader>h :History<CR>
 " 跳转行
 nnoremap <leader>l :Lines<CR>
 " 打开文件列表 
-nnoremap <leader>o :Files<CR>
+fun! Fzf_OpenFile() 
+	let cmd = (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+	return cmd
+endf
+" nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
+nnoremap <expr><leader>o Fzf_OpenFile()
+" nnoremap <leader>o :Files<CR>
 " 查找引用 
 nnoremap <leader>r <Plug>(coc-references)
 " 切换头文件 alt+o
