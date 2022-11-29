@@ -20,39 +20,39 @@ command! BD call fzf#run(fzf#wrap({
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
 \ }))
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
 " ----------------------
 " 跳转快捷键
 " ----------------------
 " 查看buff
 nnoremap <leader>b :Buffers<CR> 
-" 查找文件
-nnoremap <leader>f :Rg<CR>
+" 查找字符串
+command! -bang -nargs=* Rg
+	\ call fzf#vim#grep(
+	\  "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, 
+	\  {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+function! s:run_myrg()
+	execute "Rg"." ".expand("<cword>")
+endf
+nnoremap <leader>f :call <SID>run_myrg()<CR>
 " 跳转定义 leader+g
 nnoremap <leader>g <Plug>(coc-definition)
 "文件历史记录
 nnoremap <leader>h :History<CR>
 " 跳转行
 nnoremap <leader>l :Lines<CR>
+
 " 打开文件列表 
-fun! Fzf_OpenFile() 
-	let cmd = (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
-	return cmd
+function! s:open_filelist() 
+	" 忽略.gitignore中的文件
+	let cmd = len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached'
+	execute cmd
 endf
-" nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
-nnoremap <expr><leader>o Fzf_OpenFile()
-" nnoremap <leader>o :Files<CR>
+nnoremap <leader>o :call <SID>open_filelist()<CR>
+
 " 查找引用 
 nnoremap <leader>r <Plug>(coc-references)
+
 " 切换头文件 alt+o
 noremap <silent> <m-o> :CocCommand clangd.switchSourceHeader<CR>
 " 替换名字
@@ -63,6 +63,15 @@ noremap <m-m> :Vista!!<CR>
 "nnoremap <c-p> :Leaderf file<CR>
 noremap <c-t> :silent! Vista finder coc<CR>
 "预览声明.
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 nnoremap <silent> <LEADER>H :call <SID>show_documentation()<CR> 
 " 跳转buff
 nnoremap <m-e> <Plug>(choosewin)
