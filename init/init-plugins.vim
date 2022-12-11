@@ -160,6 +160,9 @@ let g:coc_global_extensions = [
 	\ 'coc-go',
 	\ 'coc-tsserver'
 	\]
+"coc-explorer
+nmap <leader>e <Cmd>CocCommand explorer<CR>
+
 helptags ~/.config/nvim/doc/
 
 "=======================

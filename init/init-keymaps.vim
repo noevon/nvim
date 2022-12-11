@@ -20,6 +20,11 @@ command! BD call fzf#run(fzf#wrap({
   \ 'options': '--multi --reverse --bind ctrl-a:select-all+accept'
 \ }))
 
+"
+"
+" 重载文件
+nnoremap <Leader>vr :source $MYVIMRC<CR>
+
 " ----------------------
 " 跳转快捷键
 " ----------------------
@@ -28,9 +33,8 @@ nnoremap <leader>b :Buffers<CR>
 " 查找字符串
 command! -bang -nargs=* Rg
 	\ call fzf#vim#grep(
-	\  "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, 
+	\  "rg --column --line-number --color=always ".shellescape(<q-args>), 1, 
 	\  {'options': '--delimiter : --nth 4..'}, <bang>0)
-
 function! s:run_myrg()
 	execute "Rg"." ".expand("<cword>")
 endf
@@ -58,7 +62,7 @@ noremap <silent> <m-o> :CocCommand clangd.switchSourceHeader<CR>
 " 替换名字
 nnoremap <leader>rn <Plug>(coc-rename)
 " 查看符号表 alt+m
-noremap <m-m> :Vista!!<CR>
+noremap <leader>m :Vista!!<CR>
 "noremap <C-t> :BTags<CR>
 "nnoremap <c-p> :Leaderf file<CR>
 noremap <c-t> :silent! Vista finder coc<CR>
@@ -72,7 +76,7 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
-nnoremap <silent> <LEADER>H :call <SID>show_documentation()<CR> 
+nnoremap <silent>K :call <SID>show_documentation()<CR>
 " 跳转buff
 nnoremap <m-e> <Plug>(choosewin)
 
@@ -94,6 +98,7 @@ nnoremap <m-e> <Plug>(choosewin)
 
 " easymotion/vim-easymotion
 " 快速跳转<leader><leader>f{char} 即可触发
+let g:terminal_key = '<leader>='
 
 " asynctasks
 " 编译运行任务,参考https://github.com/skywind3000/asynctasks.vim/
@@ -101,6 +106,16 @@ noremap <silent><f5> :AsyncTask file-run<cr>
 noremap <silent><f9> :AsyncTask file-build<cr>
 noremap <silent><f6> :AsyncTask project-run<cr>
 noremap <silent><f8> :AsyncTask project-build<cr>
+" [project-build]
+" command=make
+" # 设置在当前项目的根目录处运行 make
+" cwd=$(VIM_ROOT)
+" 
+" [project-run]
+" command=make run
+" # <root> 是 $(VIM_ROOT) 的别名，写起来容易些
+" cwd=<root>
+" output=terminal
 
 " translator
 nmap <Leader>t <Plug>(coc-translator-p)
