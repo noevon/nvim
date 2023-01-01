@@ -66,7 +66,7 @@ noremap <leader>m :Vista!!<CR>
 "noremap <C-t> :BTags<CR>
 "nnoremap <c-p> :Leaderf file<CR>
 noremap <c-t> :silent! Vista finder coc<CR>
-"预览声明.
+"预览声明 K
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -87,38 +87,8 @@ nnoremap <m-e> <Plug>(choosewin)
 " zc 代码折叠
 " zo 代码展开
 
-" vim-bookmarks
-" mm 当前行加入书签
-" mi 编辑书签注释
-" mg 移动书签
-" ma 查看所有书签
-
 " skywind3000/vim-terminal-help
 " <m-=> 开启终端
 
-" easymotion/vim-easymotion
-" 快速跳转<leader><leader>f{char} 即可触发
-let g:terminal_key = '<leader>='
 
-" asynctasks
-" 编译运行任务,参考https://github.com/skywind3000/asynctasks.vim/
-noremap <silent><f5> :AsyncTask file-run<cr>
-noremap <silent><f9> :AsyncTask file-build<cr>
-noremap <silent><f6> :AsyncTask project-run<cr>
-noremap <silent><f8> :AsyncTask project-build<cr>
-" [project-build]
-" command=make
-" # 设置在当前项目的根目录处运行 make
-" cwd=$(VIM_ROOT)
-" 
-" [project-run]
-" command=make run
-" # <root> 是 $(VIM_ROOT) 的别名，写起来容易些
-" cwd=<root>
-" output=terminal
-
-" translator
-nmap <Leader>t <Plug>(coc-translator-p)
-"nmap <Leader>tp <Plug>(coc-translator-p)
-vmap <Leader>t <Plug>(coc-translator-ev)
 
