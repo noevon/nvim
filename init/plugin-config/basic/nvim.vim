@@ -1,18 +1,6 @@
 
 " indentLine
 autocmd FileType json,markdown let g:indentLine_conceallevel = 0
-"=======================
-" vista.vim
-"=======================
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_default_executive = 'coc'
-let g:vista_fzf_preview = ['right:50%']
-let g:vista#renderer#enable_icon = 1
-let g:vista#renderer#icons = {
-\   "function": "\uf794",
-\   "variable": "\uf71b",
-\  }
-
 " 合并左边空白以及行号
 if has("patch-8.1.1564")
 " Recently vim can merge signcolumn and number column into one
