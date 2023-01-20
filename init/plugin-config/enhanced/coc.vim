@@ -18,8 +18,9 @@ let g:coc_global_extensions = [
 	\]
 "coc-explorer
 nmap <leader>e <Cmd>CocCommand explorer --quit-on-open<CR>
+"let helpdir = fnamemodify($MYVIMRC, ":h").'/doc/'
+"helptags helpdir
 
-helptags ~/.config/nvim/doc/
 
 " translator
 nmap <Leader>t <Plug>(coc-translator-p)
